@@ -1,18 +1,23 @@
 <template>
-  
+     <div>
     <NavigationBar/>
- 
+    <ContentSection/>
+     </div>
 
 </template>
 
 <script>
  import NavigationBar from "./components/NavigationBar.vue";
+ 
+ import ContentSection from "./components/ContentSection.vue";
+ 
 
 
 export default {
   name: "App",
   components:{
-    NavigationBar
+    NavigationBar,
+    ContentSection,
   },
 
    data(){
