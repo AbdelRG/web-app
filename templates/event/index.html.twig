@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EventController!{% endblock %}
+
+
+{% block body %}
+
+
+ 
+ 
+
+{% endblock %}
+{% block javascripts %}
+
+<script>
+ const title = JSON.parse('{{ controller_name|json_encode()|raw }}')
+ 
+</script>
+{% endblock %}
