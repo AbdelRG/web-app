@@ -1,7 +1,73 @@
 <template>
 <div >
 <div class="sideBar">
+    <img class="sideBarLogo" src="../images/logo.png">
+    <div class="sideBarListContainer">
+    <div class="sideBarElementContainer">
+        <div class="sideBarInfo">
+     <font-awesome-icon class="sideBarIcon" icon="fa-solid fa-user" />
+     <p class="sideBarElementContent">My profile</p>
+     </div>
+     <font-awesome-icon class= "sideBarIconArrow" icon="fa-solid fa-angle-down" />
+    </div>
+    <div class="sideBarElementContainer">
+        <div class="sideBarInfo">
+     <font-awesome-icon class="sideBarIcon" icon="fa-solid fa-user-group" />
+     <p class="sideBarElementContent">My network</p>
+     </div>
+     <font-awesome-icon class= "sideBarIconArrow" icon="fa-solid fa-angle-down" />
+    </div>
+    <div class="sideBarElementContainer">
+        <div class="sideBarInfo">
+     <font-awesome-icon class="sideBarIcon" icon="fa-solid fa-diagram-project" />
+     <p class="sideBarElementContent">Communities</p>
+     </div>
+     <font-awesome-icon class= "sideBarIconArrow" icon="fa-solid fa-angle-down" />
+    </div> 
+    <div class="sideBarElementContainer">
+        <div class="sideBarInfo">
+     <font-awesome-icon class="sideBarIcon" icon="fa-regular fa-envelope" />
+     <p class="sideBarElementContent">Inbox</p>
+     </div>
+    </div> 
+    <div class="sideBarElementContainer">
+        <div class="sideBarInfo">
+     <font-awesome-icon class="sideBarIcon" icon="fa-solid fa-house" />
+     <p class="sideBarElementContent">Companies</p>
+     </div>
+    </div> 
+     
+     <div class="sideBarElementContainer">
+        <div class="sideBarInfo">
+     <font-awesome-icon class="sideBarIcon" icon="fa-solid fa-briefcase" />
+     <p class="sideBarElementContent">Find a job</p>
+     </div>
+    </div> 
+
+     <div class="sideBarElementContainer">
+        <div class="sideBarInfo">
+     <font-awesome-icon class="sideBarIcon" icon="fa-regular fa-folder" />
+     <p class="sideBarElementContent">Find a mission</p>
+     </div>
+    </div> 
+      
+      <div class="sideBarElementContainer">
+        <div class="sideBarInfo">
+     <font-awesome-icon class="sideBarIcon" icon="fa-solid fa-calendar" />
+     <p class="sideBarElementContent">Find an event</p>
+     </div>
+    </div> 
+
+    <div class="sideBarElementContainer">
+        <div class="sideBarInfo">
+     <font-awesome-icon class="sideBarIcon" icon="fa-regular fa-pen-to-square" />
+     <p class="sideBarElementContent">Publications</p>
+     </div>
+    </div> 
+
+    </div>    
 </div>
+
 <div class ="navigationBarContainer">
     
     <font-awesome-icon v-on:click="showSideBar()" class= "navigationBarIcon" icon="fa-solid fa-bars" />
@@ -21,9 +87,9 @@
 <script>
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faBars ,faAngleDown} from "@fortawesome/free-solid-svg-icons";
-import { faComments,faBell} from "@fortawesome/free-regular-svg-icons";
-library.add(faBars,faComments,faBell,faAngleDown);
+import { faBars ,faAngleDown,faUser,faUserGroup,faDiagramProject,faHouse,faBriefcase,faCalendar} from "@fortawesome/free-solid-svg-icons";
+import { faComments,faBell,faEnvelope,faFolder,faPenToSquare} from "@fortawesome/free-regular-svg-icons";
+library.add(faBars,faComments,faBell,faAngleDown,faUser,faUserGroup,faDiagramProject,faEnvelope,faHouse,faBriefcase,faFolder,faCalendar,faPenToSquare);
 
 var sideBarShow = false;
 
@@ -38,7 +104,7 @@ methods: {
      if( sideBarShow == false ){
          sideBarShow = true ;
         document.getElementsByClassName("sideBar")[0].style.left ="0px"
-        document.getElementsByClassName("navigationBarContainer")[0].style.marginLeft = "200px";
+        document.getElementsByClassName("navigationBarContainer")[0].style.marginLeft = "160px";
      }else{
         sideBarShow = false;
        document.getElementsByClassName("sideBar")[0].style.left = "-500px"
@@ -55,14 +121,58 @@ methods: {
 
 
 .sideBar{
-    width: 200px;
+    width: 160px;
     height: 100vh;
     background-color: white;
     
     left: -250px;
     position: fixed;
     transition:all  500ms ease-out;
-   
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: 0 0 5px silver;
+    .sideBarLogo{
+        height: 40px;
+        width: 115px;
+        margin-top:20px;
+        margin-right:15px;
+        padding-bottom: 10px;
+        object-fit: cover;
+        border-bottom: solid 1px #ebebeb;
+        margin-bottom:30px;
+    }
+    .sideBarListContainer{
+        display: flex;
+        flex-direction: column;
+    .sideBarElementContainer{
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        justify-content: space-between;
+        .sideBarInfo{
+            display: flex;
+            align-items: center;
+
+        .sideBarIcon{
+            font-size:12px;
+            color: #919394;
+            
+        }
+        .sideBarElementContent{
+            color:#919394 ;
+            font-size:12px;
+            padding-left: 4px;
+        }
+        }
+        .sideBarIconArrow{
+            font-size:12px;
+            color:#46bda7;
+            margin-left:35px;
+        }
+    }
+    }
 }
 .navigationBarContainer{
     display: flex;
@@ -71,7 +181,7 @@ methods: {
     justify-content: space-between;
     align-items: center;
     border-radius: 0px 0px 10px 0px;
-     transition:all  500ms ease-out;
+     transition: all  500ms ease-out;
     
     .hidden{
         
