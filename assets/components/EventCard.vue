@@ -46,7 +46,7 @@ export default {
     align-items: flex-start;
     margin-top:25px;
     
-    margin-right: 50px;
+    margin-right: 20px;
     .eventCardBloc{
         padding: 10px;
     .eventPic{
@@ -92,17 +92,17 @@ export default {
         display: flex;
         align-items: baseline;
         .eventIcon{
-            color: grey;
+            color: #7f8183;
             font-size: 8px;
             margin-right: 3px;
         }
         .info{
-            color: grey;
+            color: #7f8183;
             font-size: 8px;
             margin-bottom: 0px;
         }
     }
     }
 }
-
+ 
 </style>

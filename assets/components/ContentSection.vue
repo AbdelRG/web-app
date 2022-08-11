@@ -37,15 +37,16 @@ export default {
     margin-top:35px;
     border-top: solid 2px #f0f0f0;
     .cardListContainer{
-        display: flex;
-        flex-wrap: wrap;
-        margin-left:300px;
-         margin-right:300px;
+        display: grid;
+        grid-template-columns: 240px 240px 240px;
+        gap: 10px 20px;
+       
          justify-content: center;
          margin-top:60px;
          
         
     }
+     
 }
 
 </style>
