@@ -20,7 +20,7 @@
 </div> 
 <div class="btnContainer">
     
- <font-awesome-icon class="updateIcon" icon="fa-solid fa-square-pen" data-bs-toggle="modal" data-bs-target="#exampleModal"/>
+ <font-awesome-icon class="updateIcon" icon="fa-solid fa-square-pen" data-bs-toggle="modal" data-bs-target="#exampleModal2"/>
  
 
 <font-awesome-icon class="deleteIcon" icon="fa-solid fa-square-xmark" />
@@ -30,7 +30,7 @@
          
 </div> 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -38,11 +38,11 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <FormEvent/>
+              <FormEvent formId="formUpdate"/>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Upload</button>
+              <button type="submit" form="formUpdate" class="btn btn-primary">Upload</button>
             </div>
           </div>
           </div>
@@ -90,13 +90,14 @@ name: "EventCard",
            
         .btnContainer{
         .updateIcon{
-        transform: translateY(-60px);    
+        transform: translateY(-60px) rotate(360deg);    
          opacity: 1;
          font-size: 30px ;
          transition: all 500ms ease-out;
+         
         }
         .deleteIcon{
-        transform: translateY(-60px);    
+        transform: translateY(-60px) rotate(360deg);    
          opacity: 1;
          font-size: 30px ;
          transition: all 500ms ease-out;
