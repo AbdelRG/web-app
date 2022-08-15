@@ -26,6 +26,7 @@ export default {
     .eventLink{
         font-size:13px;
         margin-right:20px;
+        margin-bottom: 0px;
         
     }
 }

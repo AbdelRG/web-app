@@ -18,18 +18,51 @@
 <font-awesome-icon  class="eventIcon" icon="fa-solid fa-calendar" />
 <p class="info"> December 20,2022</p>
 </div> 
-</div>           
+<div class="btnContainer">
+    
+ <font-awesome-icon class="updateIcon" icon="fa-solid fa-square-pen" data-bs-toggle="modal" data-bs-target="#exampleModal"/>
+ 
+
+<font-awesome-icon class="deleteIcon" icon="fa-solid fa-square-xmark" />
+</div>  
+
+      
+         
+</div> 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Update event</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <FormEvent/>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Upload</button>
+            </div>
+          </div>
+          </div>
+        </div>          
 </div>
   
 </template>
 
 <script>
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faLocationDot,faCalendar} from "@fortawesome/free-solid-svg-icons";
+import { faLocationDot,faCalendar,faSquarePen,faSquareXmark} from "@fortawesome/free-solid-svg-icons";
+import FormEvent from "./FormEvent.vue";
 
-library.add(faLocationDot,faCalendar);
+library.add(faLocationDot,faCalendar,faSquarePen,faSquareXmark);
 export default {
-
+name: "EventCard",
+  components:{
+    FormEvent,
+    
+  },
 }
 </script>
 
@@ -42,13 +75,35 @@ export default {
     width: 240px;
     background-color: white ;
     border-radius: 10px ;
-     box-shadow: 0 0 3px silver;
+    box-shadow: 0 0 5px silver;
     align-items: flex-start;
     margin-top:25px;
-    
-    margin-right: 20px;
+    margin-right:20px;
+   
     .eventCardBloc{
         padding: 10px;
+       
+        z-index: 0;
+        flex-shrink: 1;
+        
+         &:hover{
+           
+        .btnContainer{
+        .updateIcon{
+        transform: translateY(-60px);    
+         opacity: 1;
+         font-size: 30px ;
+         transition: all 500ms ease-out;
+        }
+        .deleteIcon{
+        transform: translateY(-60px);    
+         opacity: 1;
+         font-size: 30px ;
+         transition: all 500ms ease-out;
+        }
+      
+        }
+    }
     .eventPic{
         width: 220px;
         height: 80px;
@@ -67,7 +122,7 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: baseline;
-        margin-bottom: 5px;
+        margin-bottom: 15px;
         .eventOrganizer{
             color:#47bda7;
             font-size: 10px;
@@ -81,10 +136,11 @@ export default {
             height: 18px;
             background-color: #e8edf3;
             width: 45px;
-            border-radius: 5px ;
+            border-radius: 5px;
             .eventType{
-                color: #49729d;
+                color:#49729d;
                 font-size:8px;
+                margin-bottom: 0px;
             }
         }
     }
@@ -101,6 +157,25 @@ export default {
             font-size: 8px;
             margin-bottom: 0px;
         }
+    }
+    .btnContainer{
+       display: flex;
+       justify-content: space-evenly;
+      .updateIcon{
+      
+      flex-shrink: 0;
+     transform: translateY(0px);
+      color:#47bda7;
+     opacity: 0;
+      cursor: pointer;
+      }
+      .deleteIcon{
+      flex-shrink: 0;
+     transform: translateY(0px);
+     opacity: 0;
+     cursor: pointer;
+      color:red
+      }
     }
     }
 }

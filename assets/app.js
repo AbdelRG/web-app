@@ -6,10 +6,11 @@
  */
 
 // any CSS you import will output into a single css file (app.css in this case)
+import "bootstrap/dist/css/bootstrap.css";
 import "./styles/app.css";
 
 // start the Stimulus application
-import "./bootstrap";
+//import "./bootstrap";
 
 import { createApp } from "vue";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -18,3 +19,5 @@ import App from "./App.vue";
 var app = createApp(App);
 
 app.component("font-awesome-icon", FontAwesomeIcon).mount("#app");
+
+import "bootstrap/dist/js/bootstrap.js";

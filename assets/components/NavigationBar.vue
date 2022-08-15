@@ -124,7 +124,7 @@ methods: {
     width: 160px;
     height: 100vh;
     background-color: white;
-    
+    border-radius: 0px 0px 10px 0px;
     left: -250px;
     position: fixed;
     transition:all  500ms ease-out;
@@ -141,7 +141,7 @@ methods: {
         padding-bottom: 10px;
         object-fit: cover;
         border-bottom: solid 1px #ebebeb;
-        margin-bottom:30px;
+        margin-bottom:50px;
     }
     .sideBarListContainer{
         display: flex;
@@ -149,7 +149,7 @@ methods: {
     .sideBarElementContainer{
         display: flex;
         align-items: center;
-        margin-bottom: 20px;
+        margin-bottom: 40px;
         justify-content: space-between;
         .sideBarInfo{
             display: flex;
@@ -164,6 +164,7 @@ methods: {
             color:#919394 ;
             font-size:12px;
             padding-left: 4px;
+            margin-bottom: 0px;
         }
         }
         .sideBarIconArrow{
@@ -216,6 +217,7 @@ methods: {
             padding-right: 10px ;
             padding-left: 10px ;
             font-size: 15px;
+            margin-bottom: 0px;
         }
     }
     
