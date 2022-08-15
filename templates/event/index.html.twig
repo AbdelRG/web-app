@@ -6,14 +6,27 @@
 {% block body %}
 
 
- 
- 
 
 {% endblock %}
 {% block javascripts %}
 
 <script>
  const title = JSON.parse('{{ controller_name|json_encode()|raw }}')
+    const eventArray = [];
+  {% for event in events %}
+   const event = {
+    title:JSON.parse('{{ event.titre|json_encode()|raw }}'),
+    organizer:JSON.parse('{{ event.organisateur|json_encode()|raw }}'),
+    date:JSON.parse('{{ event.date|json_encode()|raw }}'),
+    place:JSON.parse('{{ event.lieu|json_encode()|raw }}'),
+    image:JSON.parse('{{ event.image|json_encode()|raw }}'),
+    type:JSON.parse('{{ event.type|json_encode()|raw }}'),
+    id:JSON.parse('{{ event.id|json_encode()|raw }}'),
+
+   }
+   eventArray.push(event);
+   
+ {% endfor %}
  
 </script>
 {% endblock %}

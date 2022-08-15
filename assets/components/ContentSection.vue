@@ -1,14 +1,10 @@
 <template>
   <div class="contentSectionContainer">
     <EventBar/>
-    <div class="cardListContainer">
+    <div class="cardListContainer" v-for="event in eventArray " :key="event.id" >
     
-    <EventCard/>
-    <EventCard/>
-    <EventCard/>
-    <EventCard/>
-    <EventCard/>
-    <EventCard/>
+    <EventCard  :event = event />
+    
     </div>
      <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -42,7 +38,7 @@
 import EventBar from "./EventBar.vue";
 import EventCard from "./EventCard.vue";
 import FormEvent from "./FormEvent.vue";
-
+ 
 export default {
    name: "ContentSection",
   components:{
@@ -51,6 +47,11 @@ export default {
     FormEvent,
     
   },
+  data(){
+    return{
+      eventArray
+    }
+  }
 
 }
 </script>

@@ -2,21 +2,21 @@
 
 <div class="eventCardContainer">
 <div class="eventCardBloc">    
-<img class="eventPic" src="../images/photo-1505373877841-8d25f7d46678.avif">
-<p class="eventTitle">Premier évenement</p>
+<img class="eventPic"  v-bind="{src: 'uploads/' + event.image}" >
+<p class="eventTitle">{{ event.title }}</p>
 <div class="eventContainer">
-    <p class="eventOrganizer">L'oreal</p>
+    <p class="eventOrganizer"> {{ event.organizer }}</p>
     <div class="eventTypeContainer">
-    <p class="eventType">Exhibition</p>
+    <p class="eventType">{{event.type}}</p>
     </div>
 </div> 
 <div class="eventInfo">
 <font-awesome-icon class="eventIcon" icon="fa-solid fa-location-dot" /> 
-<p class="info"> Paris ,France</p>
+<p class="info"> {{event.place}}</p>
 </div> 
 <div class="eventInfo">
 <font-awesome-icon  class="eventIcon" icon="fa-solid fa-calendar" />
-<p class="info"> December 20,2022</p>
+<p class="info"> {{event.date}}</p>
 </div> 
 <div class="btnContainer">
     
@@ -63,6 +63,7 @@ name: "EventCard",
     FormEvent,
     
   },
+  props:['event']
 }
 </script>
 
