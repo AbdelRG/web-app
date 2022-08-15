@@ -5,6 +5,8 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Evenement;
+use Doctrine\ORM\EntityManagerInterface;
 
 class EventController extends AbstractController
 {
@@ -16,5 +18,35 @@ class EventController extends AbstractController
         return $this->render('event/index.html.twig', [
             'controller_name' => 'EventController',
         ]);
+    }
+
+    /**
+     * @Route("/create", name="create")
+     */
+    public function createEvent( Evenement $event = null  , EntityManagerInterface $manager){
+        
+        $event = new Evenement();
+        $target_dir = realpath("../public/uploads");
+        $imageFileType = strtolower(pathinfo($_FILES["image"]["name"],PATHINFO_EXTENSION)); 
+   
+        $originalFilename = pathinfo($_FILES["image"]["name"], PATHINFO_FILENAME);
+        $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+        $safeFilename = $safeFilename.'-'.uniqid().'.'.$imageFileType;
+       
+        move_uploaded_file($_FILES["image"]["tmp_name"], $target_dir.'/'.$safeFilename);
+             
+        
+        $event->setTitre($_POST["title"]);
+        $event->setOrganisateur($_POST["organizer"]);
+        $event->setType($_POST["type"]);
+        $event->setLieu($_POST["place"]);
+        $event->setDate($_POST["date"]);
+        $event->setImage($safeFilename);
+        $event->setCreatedAt(new \DateTimeImmutable());      
+            $manager->persist($event);
+            $manager->flush();
+            
+
+            return $this->json(['code' => 200, "message" => "event ajouté"], 200);
     }
 }

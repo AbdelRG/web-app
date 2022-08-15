@@ -1,28 +1,29 @@
 <template>
   <div class="mb-3">
                  <form v-bind="{id:formId}" @submit.prevent="handleSubmit" >
-                 <input class="form-control"  id="exampleFormControlInput1" placeholder="Title of the event" v-model="title" required>
+                 <input class="form-control"  id="exampleFormControlInput1" placeholder="Title of the event" name="title" v-model="title" required>
                  <p class="error" v-if="titleError"> {{titleError}} </p>
-                 <input  class="form-control"  id="exampleFormControlInput1" placeholder="Organizer of the event" v-model="organizer" required>
+                 <input  class="form-control"  id="exampleFormControlInput1" placeholder="Organizer of the event" name="organizer" v-model="organizer" required>
                  <p class="error" v-if="organizerError"> {{organizerError}} </p>
-                 <input  class="form-control"  id="exampleFormControlInput1" placeholder="Place of the event" v-model="place" required>
+                 <input  class="form-control"  id="exampleFormControlInput1" placeholder="Place of the event" name="place" v-model="place" required>
                  <p class="error" v-if="placeError"> {{placeError}} </p>
-                 <input  class="form-control"   id="exampleFormControlInput1" placeholder="Date of the event" v-model="date" required>
+                 <input  class="form-control"   id="exampleFormControlInput1" placeholder="Date of the event" name="date" v-model="date" required>
                  <p class="error" v-if="dateError"> {{dateError}} </p>
-                 <select v-model="type" class="form-select"  aria-label="Default select example" required>
-                  <option selected value ="Type">Type of the event</option>
-                  <option value="Exhibition">Exhibition</option>
-                  <option value="Career Fair">Career Fair</option>
-                  <option value="Conference">Conference</option>
+                 <select v-model="type" class="form-select"  aria-label="Default select example" name="type" required>
+                  <option selected value ="Type" >Type of the event</option>
+                  <option value="Exhibition" >Exhibition</option>
+                  <option value="Career Fair" >Career Fair</option>
+                  <option value="Conference" >Conference</option>
                 </select>
                 <p class="error" v-if="typeError"> {{typeError}} </p>
-                <input class="form-control" type="file" id="formFile" ref="file" @change="selectFile" required>
+                <input class="form-control" type="file" id="formFile" name ="image" ref="file" @change="selectFile" required>
                 
                  </form>
               </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
    name: "FormEvent",
    data(){
@@ -53,6 +54,12 @@ export default {
         this.dateError = this.date.length >= 5 ? '' : 'Date must be at least 5 chars long'
         this.typeError = (this.type === "Exhibition"  || this.type === "Career Fair" || this.type === "Conference" ) ? '' : 'Please select a type : Exhibition , Career Fair or Conference '
         
+        const form = document.getElementById(this.formId);
+          const formData = new FormData(form);
+
+          axios.post('/create', formData).then(function (res) {
+            console.log(res.data.message)
+            })
 
       }
    },
