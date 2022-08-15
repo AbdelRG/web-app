@@ -1,9 +1,9 @@
 <template>
   <div class="contentSectionContainer">
     <EventBar/>
-    <div class="cardListContainer" v-for="event in eventArray " :key="event.id" >
+    <div class="cardListContainer" >
     
-    <EventCard  :event = event />
+    <EventCard v-for="event in eventArray " :key="event.id"  :event = event />
     
     </div>
      <!-- Button trigger modal -->

@@ -14,7 +14,7 @@
  const title = JSON.parse('{{ controller_name|json_encode()|raw }}')
     const eventArray = [];
   {% for event in events %}
-   const event = {
+   var event = {
     title:JSON.parse('{{ event.titre|json_encode()|raw }}'),
     organizer:JSON.parse('{{ event.organisateur|json_encode()|raw }}'),
     date:JSON.parse('{{ event.date|json_encode()|raw }}'),
