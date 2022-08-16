@@ -21,7 +21,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <FormEvent formId="formAdd" :eventContent= this.eventContent />
+              <FormEvent formId="formAdd"  />
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -52,13 +52,7 @@ export default {
     return{
       eventArray,
       array :[],
-      eventContent:{title:null,
-         organizer:null,
-          date:null,
-          place:null,
-           image:null,
-           type:null,
-        id:null,}
+     
     }
   },
   
@@ -104,4 +98,43 @@ export default {
 
 }
 
+@media screen and (min-width:0px) and  (max-width: 650px) {
+
+  .contentSectionContainer{
+    margin-bottom: 30px ;
+   
+    
+     .cardListContainer{
+      display: flex;
+        flex-direction: column;
+        gap: 10px 20px;
+       
+         justify-content: center;
+         margin-top:60px;
+         margin-bottom:60px;
+         margin-left:20px;
+         margin-right:20px;
+     }
+  
+}
+}
+@media screen and (min-width:651px) and  (max-width: 1200px) {
+    
+
+  .contentSectionContainer{  
+    margin-bottom: 30px ;
+  .cardListContainer{
+        display: grid;
+        grid-template-columns: 240px 240px ;
+        gap: 10px 20px;
+       
+         justify-content: center;
+         margin-top:60px;
+         margin-bottom:60px;
+         
+         
+        
+    }
+}
+}
 </style>

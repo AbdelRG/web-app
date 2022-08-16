@@ -28,7 +28,7 @@ export default {
    name: "FormEvent",
    data(){
     return {
-          title : this.eventContent.title,
+          title : '',
           organizer : '',
           place : '',
           date : '',
@@ -69,7 +69,7 @@ export default {
           }
       }
    },
-   props:['formId','eventContent'],
+   props:['formId','testContent'],
 }
 </script>
 

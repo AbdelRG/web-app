@@ -64,7 +64,7 @@
      <p class="sideBarElementContent">Publications</p>
      </div>
     </div> 
-
+      <button type="button" v-on:click="hideSideBar()" class="btn btn-danger">Close</button>
     </div>    
 </div>
 
@@ -112,7 +112,14 @@ methods: {
      }
      
       
+    },
+    hideSideBar(){
+        sideBarShow = false;
+        document.getElementsByClassName("sideBar")[0].style.left ="-2500px";
+        document.getElementsByClassName("navigationBarContainer")[0].style.marginLeft = "0px";
+        
     }
+
   }
 }
 </script>
@@ -146,6 +153,9 @@ methods: {
     .sideBarListContainer{
         display: flex;
         flex-direction: column;
+        .btn-danger {
+            display: none;
+        }
     .sideBarElementContainer{
         display: flex;
         align-items: center;
@@ -223,9 +233,24 @@ methods: {
     
 }
 
-
-
+@media screen and (min-width:0px) and  (max-width: 900px) {
+    .sideBar{
+        width: 100%;
+        height: 100vh;
+        left: -2500px;
+        
+        
+        z-index: 10;
+        .sideBarListContainer{
+            .btn-danger {
+            display: block;
+        }
+        }
+    } 
+    
   
+}
+
 
 
 </style>

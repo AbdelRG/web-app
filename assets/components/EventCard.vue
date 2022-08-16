@@ -20,7 +20,7 @@
 </div> 
 <div class="btnContainer">
     
- <font-awesome-icon class="updateIcon"  v-bind="{eventId: event.id}" icon="fa-solid fa-square-pen" data-bs-toggle="modal" data-bs-target="#exampleModal2"/>
+ <font-awesome-icon class="updateIcon"  v-bind="{eventId: event.id}" icon="fa-solid fa-square-pen" data-bs-toggle="modal" v-on:click="updateFormContent()" data-bs-target="#exampleModal2"/>
  
 
 <font-awesome-icon class="deleteIcon" icon="fa-solid fa-square-xmark" />
@@ -38,7 +38,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <FormEvent formId="formUpdate" :eventContent = this.event   />
+              <FormEvent formId="formUpdate" :eventContent = testContent />
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -63,7 +63,7 @@ library.add(faLocationDot,faCalendar,faSquarePen,faSquareXmark);
 
 // month is 0-based, that's why we need dataParts[1] - 1
 //var dateObject = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
-
+ var testContent = "test"
 
 export default {
 name: "EventCard",
@@ -74,7 +74,8 @@ name: "EventCard",
   props:['event'],
   data(){
     return{ 
-      dateFormat: null
+      dateFormat: null,
+      
     }
   },
   mounted(){
@@ -91,6 +92,15 @@ name: "EventCard",
     
           
   },
+  methods:{
+    updateFormContent(){
+      
+      console.log(testContent)
+      testContent = "test2"
+      console.log(testContent)
+
+    }
+  }
 
 }
 </script>
