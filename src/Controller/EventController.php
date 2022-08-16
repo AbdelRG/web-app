@@ -45,11 +45,12 @@ class EventController extends AbstractController
         $event->setLieu($_POST["place"]);
         $event->setDate($_POST["date"]);
         $event->setImage($safeFilename);
-        $event->setCreatedAt(new \DateTimeImmutable());      
+        $event->setCreatedAt(new \DateTimeImmutable()); 
+        
             $manager->persist($event);
             $manager->flush();
-            
+           $eventId = $event->getId();    
 
-            return $this->json(['code' => 200, "message" => "event ajouté"], 200);
+            return $this->json(['code' => 200, "message" => "event ajouté","id"=>$eventId], 200);
     }
 }

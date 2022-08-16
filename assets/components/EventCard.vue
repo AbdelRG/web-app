@@ -16,11 +16,11 @@
 </div> 
 <div class="eventInfo">
 <font-awesome-icon  class="eventIcon" icon="fa-solid fa-calendar" />
-<p class="info"> {{event.date}}</p>
+<p class="info"> {{dateFormat}}</p>
 </div> 
 <div class="btnContainer">
     
- <font-awesome-icon class="updateIcon" icon="fa-solid fa-square-pen" data-bs-toggle="modal" data-bs-target="#exampleModal2"/>
+ <font-awesome-icon class="updateIcon"  v-bind="{eventId: event.id}" icon="fa-solid fa-square-pen" data-bs-toggle="modal" data-bs-target="#exampleModal2"/>
  
 
 <font-awesome-icon class="deleteIcon" icon="fa-solid fa-square-xmark" />
@@ -38,7 +38,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <FormEvent formId="formUpdate"/>
+              <FormEvent formId="formUpdate" :eventContent = this.event   />
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -57,13 +57,41 @@ import { faLocationDot,faCalendar,faSquarePen,faSquareXmark} from "@fortawesome/
 import FormEvent from "./FormEvent.vue";
 
 library.add(faLocationDot,faCalendar,faSquarePen,faSquareXmark);
+
+
+//var dateParts = dateString.split("/");
+
+// month is 0-based, that's why we need dataParts[1] - 1
+//var dateObject = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
+
+
 export default {
 name: "EventCard",
   components:{
     FormEvent,
     
   },
-  props:['event']
+  props:['event'],
+  data(){
+    return{ 
+      dateFormat: null
+    }
+  },
+  mounted(){
+   
+   var dateString = this.event.date;
+
+   var dateParts = dateString.split("/");
+   var dateObject = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
+   const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+                  ];
+   this.dateFormat = monthNames[dateObject.getMonth()]+" "+ dateObject.getDate() + ", " + dateObject.getFullYear() ;  
+   
+    
+          
+  },
+
 }
 </script>
 

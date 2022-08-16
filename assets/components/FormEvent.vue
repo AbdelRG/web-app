@@ -1,13 +1,13 @@
 <template>
   <div class="mb-3">
                  <form v-bind="{id:formId}" @submit.prevent="handleSubmit" >
-                 <input class="form-control"  id="exampleFormControlInput1" placeholder="Title of the event" name="title" v-model="title" required>
+                 <input  class="form-control"  id="exampleFormControlInput1" placeholder="Title of the event" name="title" v-model="title" required>
                  <p class="error" v-if="titleError"> {{titleError}} </p>
                  <input  class="form-control"  id="exampleFormControlInput1" placeholder="Organizer of the event" name="organizer" v-model="organizer" required>
                  <p class="error" v-if="organizerError"> {{organizerError}} </p>
                  <input  class="form-control"  id="exampleFormControlInput1" placeholder="Place of the event" name="place" v-model="place" required>
                  <p class="error" v-if="placeError"> {{placeError}} </p>
-                 <input  class="form-control"   id="exampleFormControlInput1" placeholder="Date of the event" name="date" v-model="date" required>
+                 <input  class="form-control"   id="exampleFormControlInput1" placeholder="Date of the event , example : 'dd/mm/yyyy'" name="date" v-model="date" required>
                  <p class="error" v-if="dateError"> {{dateError}} </p>
                  <select v-model="type" class="form-select"  aria-label="Default select example" name="type" required>
                   <option selected value ="Type" >Type of the event</option>
@@ -28,7 +28,7 @@ export default {
    name: "FormEvent",
    data(){
     return {
-          title : '',
+          title : this.eventContent.title,
           organizer : '',
           place : '',
           date : '',
@@ -46,24 +46,30 @@ export default {
         this.file = this.$refs.file.files[0];
       },
       handleSubmit(){
-        console.log("form submitted");
+        
+       var regex = /^(0?[1-9]|[12][0-9]|3[01])[/-](0?[1-9]|1[012])[/-]\d{4}$/
         //validate form
+       
+
         this.titleError = this.title.length >= 10 ? '' : 'Title must be at least 10 chars long'
         this.organizerError = this.organizer.length >= 3 ? '' : 'Organizer must be at least 3 chars long'
         this.placeError = this.place.length >= 5 ? '' : 'Place must be at least 5 chars long'
-        this.dateError = this.date.length >= 5 ? '' : 'Date must be at least 5 chars long'
+        this.dateError = regex.test(this.date) ? '' : 'Please enter the correct format : dd/mm/yyyy'
         this.typeError = (this.type === "Exhibition"  || this.type === "Career Fair" || this.type === "Conference" ) ? '' : 'Please select a type : Exhibition , Career Fair or Conference '
-        
         const form = document.getElementById(this.formId);
           const formData = new FormData(form);
-
+          if(this.titleError =='' && this.organizerError == '' && this.placeError == '' && this.dateError == '' && this.typeError == '' ){
           axios.post('/create', formData).then(function (res) {
             console.log(res.data.message)
+            console.log("form submitted");
+           
             })
-
+             $('#exampleModal').modal('hide');
+            
+          }
       }
    },
-   props:['formId'],
+   props:['formId','eventContent'],
 }
 </script>
 
