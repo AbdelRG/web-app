@@ -16,7 +16,7 @@
                   <option value="Conference" >Conference</option>
                 </select>
                 <p class="error" v-if="typeError"> {{typeError}} </p>
-                <input class="form-control" type="file" id="formFile" name ="image" ref="file" @change="selectFile" required>
+                <input class="form-control" type="file" id="formFile" name ="image" ref="file" @change="selectFile" >
                 
                  </form>
               </div>
@@ -62,7 +62,27 @@ export default {
 
         //send form
 
-          if(this.titleError =='' && this.organizerError == '' && this.placeError == '' && this.dateError == '' && this.typeError == '' ){
+          if(this.titleError =='' && this.organizerError == '' && this.placeError == '' && this.dateError == '' && this.typeError == ''  ){
+            if(this.formId != "formAdd" ){
+               formData.append("id" , this.formId);
+             axios.post('/update', formData).then( (res) => {
+            console.log(res.data.message)
+            console.log("form submitted");
+            var updatedEvent= {
+              title : res.data.title,
+              organizer : res.data.organizer,
+              place : res.data.place,
+              date : res.data.date,
+              type : res.data.type,
+              image: res.data.image,
+              id : res.data.id
+            }
+            this.$emit('updateEvent' , updatedEvent ) ;
+                  
+             $("#exampleModal" + this.formId).modal('hide');
+             
+            })
+            }else if ( this.file != '') {
           axios.post('/create', formData).then( (res) => {
             console.log(res.data.message)
             console.log("form submitted");
@@ -76,16 +96,23 @@ export default {
               id : res.data.id
             }
              this.$emit('updateArray',newEvent);
-             
-            })
-            
+             this.title = ""
+              this.organizer = ""
+              this.place = ""
+              this.date = ""
+              this.type= ""
+              this.file= ""
              $('#exampleModal').modal('hide');
+            })}
+            
+            
+             
             
           }
       }
    },
    props:['formId','currentEvent'],
-   emits: ['updateArray']
+   emits: ['updateArray','updateEvent']
   
 }
 </script>

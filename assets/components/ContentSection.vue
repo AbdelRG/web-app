@@ -3,7 +3,7 @@
     <EventBar/>
     <div class="cardListContainer" >
     
-    <EventCard v-for="event in eventArray " :key="event.id"  :event = event />
+    <EventCard v-for="event in eventArray " :key="event.id"  :event = event @updateEvent = "updateEvent" />
     
     </div>
      <!-- Button trigger modal -->
@@ -58,6 +58,7 @@ export default {
         place: '',
         date: '',
         type: '',
+        file:'',
       }
      
     }
@@ -66,6 +67,12 @@ export default {
     pushArray(newEvent){
         
         this.eventArray.push({ ...newEvent })
+    },
+    updateEvent(updatedEvent){
+        
+      const index =   this.eventArray.findIndex((element) => element.id == updatedEvent.id);
+      this.eventArray[index] = updatedEvent ;
+
     }
   }
   
@@ -81,6 +88,7 @@ export default {
     align-items: center;
     margin-top:35px;
     border-top: solid 2px #f0f0f0;
+    margin-bottom: 30px ;
     .cardListContainer{
         display: grid;
         grid-template-columns: 240px 240px 240px;

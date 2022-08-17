@@ -61,4 +61,42 @@ class EventController extends AbstractController
             "image"=>$event->getImage(),
         ], 200);
     }
+
+    /**
+     * @Route("/update", name="update")
+     */
+    public function updateEvent( Evenement $event = null  , EntityManagerInterface $manager , EvenementRepository $repo ){
+        
+        $event = $repo->findOneById($_POST["id"]);
+        $event->setTitre($_POST["title"]);
+        $event->setOrganisateur($_POST["organizer"]);
+        $event->setType($_POST["type"]);
+        $event->setLieu($_POST["place"]);
+        $event->setDate($_POST["date"]);
+      
+
+        if ($_FILES["image"]["name"] != ''){
+            $target_dir = realpath("../public/uploads");
+            $imageFileType = strtolower(pathinfo($_FILES["image"]["name"],PATHINFO_EXTENSION)); 
+       
+            $originalFilename = pathinfo($_FILES["image"]["name"], PATHINFO_FILENAME);
+            $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+            $safeFilename = $safeFilename.'-'.uniqid().'.'.$imageFileType;
+           
+            move_uploaded_file($_FILES["image"]["tmp_name"], $target_dir.'/'.$safeFilename);
+            $event->setImage($safeFilename);
+        }
+                $manager->persist($event);
+                $manager->flush();
+
+                return $this->json(['code' => 200, "message" =>  "event modifier",
+                    "id"=>$event->getId(),
+                    "title"=>$event->getTitre(),
+                    "organizer"=>$event->getOrganisateur(),
+                    "type"=>$event->getType(),
+                    "place"=>$event->getLieu(),
+                    "date"=>$event->getDate(),
+                    "image"=>$event->getImage(),
+                ], 200);
+    }
 }

@@ -38,7 +38,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <FormEvent :formId="event.id" :currentEvent = this.event />
+              <FormEvent :formId="event.id" :currentEvent = this.event @updateEvent = "updateEvent" />
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -69,6 +69,7 @@ name: "EventCard",
     
   },
   props:['event'],
+  emits:['updateEvent'],
   data(){
     return{ 
       dateFormat: null,
@@ -89,6 +90,13 @@ name: "EventCard",
     
           
   },
+  methods:{
+    updateEvent( updatedEvent ){
+
+      this.$emit('updateEvent', updatedEvent )
+       
+    }
+  }
   
 
 }
