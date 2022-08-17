@@ -3,67 +3,81 @@
 <div class="sideBar">
     <img class="sideBarLogo" src="../images/logo.png">
     <div class="sideBarListContainer">
-    <div class="sideBarElementContainer">
-        <div class="sideBarInfo">
-     <font-awesome-icon class="sideBarIcon" icon="fa-solid fa-user" />
-     <p class="sideBarElementContent">My profile</p>
+    <a class="sideBarElementLink" href="#">
+    <div class="sideBarElementContainer1">
+        <div class="sideBarInfo1">
+     <font-awesome-icon class="sideBarIcon1" icon="fa-solid fa-user" />
+     <p class="sideBarElementContent1">My profile</p>
      </div>
      <font-awesome-icon class= "sideBarIconArrow" icon="fa-solid fa-angle-down" />
     </div>
-    <div class="sideBarElementContainer">
-        <div class="sideBarInfo">
-     <font-awesome-icon class="sideBarIcon" icon="fa-solid fa-user-group" />
-     <p class="sideBarElementContent">My network</p>
+    </a>
+    <a class="sideBarElementLink" href="#">
+    <div class="sideBarElementContainer1">
+        <div class="sideBarInfo1">
+     <font-awesome-icon class="sideBarIcon1" icon="fa-solid fa-user-group" />
+     <p class="sideBarElementContent1">My network</p>
      </div>
      <font-awesome-icon class= "sideBarIconArrow" icon="fa-solid fa-angle-down" />
     </div>
-    <div class="sideBarElementContainer">
-        <div class="sideBarInfo">
-     <font-awesome-icon class="sideBarIcon" icon="fa-solid fa-diagram-project" />
-     <p class="sideBarElementContent">Communities</p>
+    </a>
+    <a class="sideBarElementLink" href="#">
+    <div class="sideBarElementContainer1">
+        <div class="sideBarInfo1">
+     <font-awesome-icon class="sideBarIcon1" icon="fa-solid fa-diagram-project" />
+     <p class="sideBarElementContent1">Communities</p>
      </div>
      <font-awesome-icon class= "sideBarIconArrow" icon="fa-solid fa-angle-down" />
     </div> 
+    </a>
+     <a class="sideBarElementLink" href="#">
     <div class="sideBarElementContainer">
         <div class="sideBarInfo">
      <font-awesome-icon class="sideBarIcon" icon="fa-regular fa-envelope" />
      <p class="sideBarElementContent">Inbox</p>
      </div>
     </div> 
+     </a>
+    <a class="sideBarElementLink" href="#">
     <div class="sideBarElementContainer">
         <div class="sideBarInfo">
      <font-awesome-icon class="sideBarIcon" icon="fa-solid fa-house" />
      <p class="sideBarElementContent">Companies</p>
      </div>
     </div> 
-     
+    </a>
+     <a class="sideBarElementLink" href="#">
      <div class="sideBarElementContainer">
         <div class="sideBarInfo">
      <font-awesome-icon class="sideBarIcon" icon="fa-solid fa-briefcase" />
      <p class="sideBarElementContent">Find a job</p>
      </div>
     </div> 
-
+     </a>
+     <a class="sideBarElementLink" href="#">
      <div class="sideBarElementContainer">
         <div class="sideBarInfo">
      <font-awesome-icon class="sideBarIcon" icon="fa-regular fa-folder" />
      <p class="sideBarElementContent">Find a mission</p>
      </div>
     </div> 
-      
+     </a>
+      <a class="sideBarElementLink" href="#">
       <div class="sideBarElementContainer">
         <div class="sideBarInfo">
      <font-awesome-icon class="sideBarIcon" icon="fa-solid fa-calendar" />
      <p class="sideBarElementContent">Find an event</p>
      </div>
     </div> 
-
+      </a>
+    <a class="sideBarElementLink" href="#">
     <div class="sideBarElementContainer">
         <div class="sideBarInfo">
      <font-awesome-icon class="sideBarIcon" icon="fa-regular fa-pen-to-square" />
      <p class="sideBarElementContent">Publications</p>
      </div>
     </div> 
+    </a>
       <button type="button" v-on:click="hideSideBar()" class="btn btn-danger">Close</button>
     </div>    
 </div>
@@ -156,6 +170,27 @@ methods: {
         .btn-danger {
             display: none;
         }
+        .sideBarElementLink{
+             text-decoration: none;
+             cursor: pointer;
+        }
+        .sideBarElementLink:visited{
+            
+             
+            .sideBarElementContainer{
+                .sideBarIcon{
+                    color:#46bda7;
+                }
+                .sideBarElementContent{
+                    color:#46bda7;
+                }   
+            }
+             .sideBarIconArrow{
+            
+            color:#46bda7;
+          
+        } 
+        }
     .sideBarElementContainer{
         display: flex;
         align-items: center;
@@ -177,12 +212,38 @@ methods: {
             margin-bottom: 0px;
         }
         }
+        
+        
+    }
+    .sideBarElementContainer1{
+        display: flex;
+        align-items: center;
+        margin-bottom: 40px;
+        justify-content: space-between;
+        .sideBarInfo1{
+            display: flex;
+            align-items: center;
+
+        .sideBarIcon1{
+            font-size:12px;
+            color: #919394;
+            
+        }
+        .sideBarElementContent1{
+            color:#919394 ;
+            font-size:12px;
+            padding-left: 4px;
+            margin-bottom: 0px;
+        }
+        }
         .sideBarIconArrow{
             font-size:12px;
-            color:#46bda7;
+            color:#919394 ;
             margin-left:35px;
-        }
+        } 
+        
     }
+       
     }
 }
 .navigationBarContainer{
