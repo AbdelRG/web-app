@@ -1,13 +1,47 @@
 <template>
   <div class="eventBarContainer">
-    <p class="eventLink">Upcoming events </p>
-    <p class="eventLink">Past events </p>
+    <p class="eventLink"  data-filter="upcoming" v-on:click="filterEvent">Upcoming events </p>
+    <p class="eventLink" data-filter="past" v-on:click="filterEvent">Past events </p>
   </div>
 </template>
 
 <script>
 export default {
+methods:{
+    filterEvent(e){
+      const events = document.querySelectorAll('.eventCardContainer');
+      const filterButtons =   document.querySelectorAll('.eventLink');
+        filterButtons.forEach(filter => {
+          filter.style.color = ""
+        })
+        e.target.style.color = "blue";
+      if(e.target.dataset.filter == "upcoming"){
 
+        events.forEach(event => {
+          let date = new Date(event.querySelectorAll('.info')[1].innerHTML);
+          let currentdate = new Date();
+          if (currentdate > date){
+             event.style.display = "none";
+          }
+          else{
+             event.style.display = "";
+          }
+        })
+      }
+      else{
+        events.forEach(event => {
+          let date = new Date(event.querySelectorAll('.info')[1].innerHTML);
+          let currentdate = new Date();
+          if (currentdate < date){
+             event.style.display = "none";
+          }
+          else{
+             event.style.display = "";
+          }
+        })
+      }
+    }
+   }
 }
 </script>
 

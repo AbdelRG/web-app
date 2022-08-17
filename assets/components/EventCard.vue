@@ -16,7 +16,7 @@
 </div> 
 <div class="eventInfo">
 <font-awesome-icon  class="eventIcon" icon="fa-solid fa-calendar" />
-<p class="info"> {{dateFormat}}</p>
+<p class="info"> {{this.formatDate(event.date) }}</p>
 </div> 
 <div class="btnContainer">
     
@@ -77,20 +77,7 @@ name: "EventCard",
       
     }
   },
-  mounted(){
-   
-   var dateString = this.event.date;
-
-   var dateParts = dateString.split("/");
-   var dateObject = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
-   const monthNames = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
-                  ];
-   this.dateFormat = monthNames[dateObject.getMonth()]+" "+ dateObject.getDate() + ", " + dateObject.getFullYear() ;  
-   
-    
-          
-  },
+  
   methods:{
     updateEvent( updatedEvent ){
 
@@ -103,6 +90,15 @@ name: "EventCard",
        axios.delete('/delete/' + this.event.id).then( (res) => {
          this.$emit('deleteEvent', deletedEvent)
        })
+       },
+       formatDate(date){
+         var dateString = this.event.date;
+
+        var dateParts = dateString.split("/");
+        var dateObject = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"];
+        return monthNames[dateObject.getMonth()]+" "+ dateObject.getDate() + ", " + dateObject.getFullYear() ;
        }
   }
   
@@ -115,7 +111,7 @@ name: "EventCard",
 .eventCardContainer{
     display: flex;
     flex-direction: column;
-    height: 190px;
+    height: 200px;
     width: 240px;
     background-color: white ;
     border-radius: 10px ;
@@ -158,19 +154,22 @@ name: "EventCard",
     .eventTitle{
         font-size: 12px;
         
-        margin-top:5px;
+        margin-top:10px;
         width: 150px;
-        margin-bottom: 0px;
+        margin-bottom: 5px;
         text-align: start;
+        font-weight: bolder;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     .eventContainer{
         display: flex;
         justify-content: space-between;
         align-items: baseline;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
         .eventOrganizer{
             color:#47bda7;
-            font-size: 10px;
+            font-size: 12px;
             margin-bottom: 0px;
             
         }
@@ -178,14 +177,16 @@ name: "EventCard",
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 18px;
+            height: 20px;
             background-color: #e8edf3;
-            width: 45px;
-            border-radius: 5px;
+            width: 55px;
+            border-radius: 10px;
             .eventType{
-                color:#49729d;
+                color:#22558b;
                 font-size:8px;
+                
                 margin-bottom: 0px;
+                
             }
         }
     }
@@ -193,13 +194,13 @@ name: "EventCard",
         display: flex;
         align-items: baseline;
         .eventIcon{
-            color: #7f8183;
-            font-size: 8px;
+            color: #a6a7a7;
+            font-size: 10px;
             margin-right: 3px;
         }
         .info{
-            color: #7f8183;
-            font-size: 8px;
+            color: #a6a7a7;
+            font-size: 10px;
             margin-bottom: 0px;
         }
     }
