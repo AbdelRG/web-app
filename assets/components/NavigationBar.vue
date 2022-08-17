@@ -132,7 +132,11 @@ methods: {
         document.getElementsByClassName("sideBar")[0].style.left ="-2500px";
         document.getElementsByClassName("navigationBarContainer")[0].style.marginLeft = "0px";
         
-    }
+    },
+
+    
+  
+
 
   }
 }
@@ -174,7 +178,7 @@ methods: {
              text-decoration: none;
              cursor: pointer;
         }
-        .sideBarElementLink:visited{
+        .sideBarElementLink:focus{
             
              
             .sideBarElementContainer{

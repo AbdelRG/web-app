@@ -20,7 +20,7 @@
 </div> 
 <div class="btnContainer">
     
- <font-awesome-icon class="updateIcon"  v-bind="{eventId: event.id}" icon="fa-solid fa-square-pen" data-bs-toggle="modal" v-on:click="updateFormContent()" data-bs-target="#exampleModal2"/>
+ <font-awesome-icon class="updateIcon"   icon="fa-solid fa-square-pen" data-bs-toggle="modal"  v-bind="{'data-bs-target': '#exampleModal' + event.id}" />
  
 
 <font-awesome-icon class="deleteIcon" icon="fa-solid fa-square-xmark" />
@@ -30,7 +30,7 @@
          
 </div> 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" v-bind="{'id': 'exampleModal' + event.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -38,11 +38,11 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <FormEvent formId="formUpdate" :eventContent = testContent />
+              <FormEvent :formId="event.id" :currentEvent = this.event />
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" form="formUpdate" class="btn btn-primary">Upload</button>
+              <button type="submit"  v-bind="{form:event.id}" class="btn btn-primary">Upload</button>
             </div>
           </div>
           </div>
@@ -59,11 +59,8 @@ import FormEvent from "./FormEvent.vue";
 library.add(faLocationDot,faCalendar,faSquarePen,faSquareXmark);
 
 
-//var dateParts = dateString.split("/");
 
-// month is 0-based, that's why we need dataParts[1] - 1
-//var dateObject = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
- var testContent = "test"
+ 
 
 export default {
 name: "EventCard",
@@ -92,15 +89,7 @@ name: "EventCard",
     
           
   },
-  methods:{
-    updateFormContent(){
-      
-      console.log(testContent)
-      testContent = "test2"
-      console.log(testContent)
-
-    }
-  }
+  
 
 }
 </script>

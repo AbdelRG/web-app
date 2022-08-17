@@ -51,6 +51,14 @@ class EventController extends AbstractController
             $manager->flush();
            $eventId = $event->getId();    
 
-            return $this->json(['code' => 200, "message" => "event ajouté","id"=>$eventId], 200);
+            return $this->json(['code' => 200, "message" => "event ajouté",
+            "id"=>$eventId,
+            "title"=>$event->getTitre(),
+            "organizer"=>$event->getOrganisateur(),
+            "type"=>$event->getType(),
+            "place"=>$event->getLieu(),
+            "date"=>$event->getDate(),
+            "image"=>$event->getImage(),
+        ], 200);
     }
 }

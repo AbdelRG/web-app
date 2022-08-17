@@ -28,17 +28,18 @@ export default {
    name: "FormEvent",
    data(){
     return {
-          title : '',
-          organizer : '',
-          place : '',
-          date : '',
-          type:'',
+          title : this.currentEvent.title,
+          organizer : this.currentEvent.organizer,
+          place : this.currentEvent.place,
+          date : this.currentEvent.date,
+          type:this.currentEvent.type,
           file:'',
           titleError:'',
           organizerError:'',
           placeError:'',
           dateError:'',
-          typeError:''
+          typeError:'',
+          eventArray
         }
    },
    methods:{
@@ -58,18 +59,34 @@ export default {
         this.typeError = (this.type === "Exhibition"  || this.type === "Career Fair" || this.type === "Conference" ) ? '' : 'Please select a type : Exhibition , Career Fair or Conference '
         const form = document.getElementById(this.formId);
           const formData = new FormData(form);
+
+        //send form
+
           if(this.titleError =='' && this.organizerError == '' && this.placeError == '' && this.dateError == '' && this.typeError == '' ){
-          axios.post('/create', formData).then(function (res) {
+          axios.post('/create', formData).then( (res) => {
             console.log(res.data.message)
             console.log("form submitted");
-           
+            var newEvent = {
+              title : res.data.title,
+              organizer : res.data.organizer,
+              place : res.data.place,
+              date : res.data.date,
+              type : res.data.type,
+              image: res.data.image,
+              id : res.data.id
+            }
+             this.$emit('updateArray',newEvent);
+             
             })
+            
              $('#exampleModal').modal('hide');
             
           }
       }
    },
-   props:['formId','testContent'],
+   props:['formId','currentEvent'],
+   emits: ['updateArray']
+  
 }
 </script>
 

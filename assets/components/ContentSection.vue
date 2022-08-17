@@ -21,7 +21,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <FormEvent formId="formAdd"  />
+              <FormEvent formId="formAdd" :currentEvent= currentEvent @updateArray = "pushArray"   />
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -50,11 +50,24 @@ export default {
   },
   data(){
     return{
-      eventArray,
+      eventArray:eventArray,
       array :[],
+      currentEvent: {
+        title: '',
+        organizer: '',
+        place: '',
+        date: '',
+        type: '',
+      }
      
     }
   },
+  methods:{
+    pushArray(newEvent){
+        
+        this.eventArray.push({ ...newEvent })
+    }
+  }
   
 
 }
