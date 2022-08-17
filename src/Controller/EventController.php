@@ -77,8 +77,9 @@ class EventController extends AbstractController
 
         if ($_FILES["image"]["name"] != ''){
             $target_dir = realpath("../public/uploads");
+            unlink($target_dir.'/'.$event->getImage());
             $imageFileType = strtolower(pathinfo($_FILES["image"]["name"],PATHINFO_EXTENSION)); 
-       
+               
             $originalFilename = pathinfo($_FILES["image"]["name"], PATHINFO_FILENAME);
             $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
             $safeFilename = $safeFilename.'-'.uniqid().'.'.$imageFileType;
@@ -98,5 +99,21 @@ class EventController extends AbstractController
                     "date"=>$event->getDate(),
                     "image"=>$event->getImage(),
                 ], 200);
+    }
+    /**
+     * @Route("/delete/{id}", name="delete")
+     */
+    public function deleteEvent(Evenement $event,  EntityManagerInterface $manager){
+
+        
+        $target_dir = realpath("../public/uploads");
+        unlink($target_dir.'/'.$event->getImage());
+        $manager->remove($event);
+        $manager->flush();
+
+        return $this->json(['code' => 200, "message" =>  "event supprimer",
+
+        ], 200);
+
     }
 }

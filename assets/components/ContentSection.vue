@@ -3,7 +3,7 @@
     <EventBar/>
     <div class="cardListContainer" >
     
-    <EventCard v-for="event in eventArray " :key="event.id"  :event = event @updateEvent = "updateEvent" />
+    <EventCard v-for="event in eventArray " :key="event.id"  :event = event @updateEvent = "updateEvent" @deleteEvent = "deleteEvent" />
     
     </div>
      <!-- Button trigger modal -->
@@ -73,7 +73,15 @@ export default {
       const index =   this.eventArray.findIndex((element) => element.id == updatedEvent.id);
       this.eventArray[index] = updatedEvent ;
 
+    },
+    deleteEvent(deletedEvent){
+
+         const index = this.eventArray.findIndex((element => element.id == deletedEvent.id));
+         this.eventArray.splice(index, 1)
+
+
     }
+
   }
   
 

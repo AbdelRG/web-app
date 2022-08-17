@@ -23,7 +23,7 @@
  <font-awesome-icon class="updateIcon"   icon="fa-solid fa-square-pen" data-bs-toggle="modal"  v-bind="{'data-bs-target': '#exampleModal' + event.id}" />
  
 
-<font-awesome-icon class="deleteIcon" icon="fa-solid fa-square-xmark" />
+<font-awesome-icon class="deleteIcon" icon="fa-solid fa-square-xmark" v-on:click="deleteEvent" />
 </div>  
 
       
@@ -55,6 +55,7 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faLocationDot,faCalendar,faSquarePen,faSquareXmark} from "@fortawesome/free-solid-svg-icons";
 import FormEvent from "./FormEvent.vue";
+import axios from "axios"
 
 library.add(faLocationDot,faCalendar,faSquarePen,faSquareXmark);
 
@@ -69,7 +70,7 @@ name: "EventCard",
     
   },
   props:['event'],
-  emits:['updateEvent'],
+  emits:['updateEvent','deleteEvent'],
   data(){
     return{ 
       dateFormat: null,
@@ -95,7 +96,14 @@ name: "EventCard",
 
       this.$emit('updateEvent', updatedEvent )
        
-    }
+    },
+    deleteEvent(){
+      var deletedEvent = this.event;
+
+       axios.delete('/delete/' + this.event.id).then( (res) => {
+         this.$emit('deleteEvent', deletedEvent)
+       })
+       }
   }
   
 
