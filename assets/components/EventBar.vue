@@ -13,8 +13,10 @@ methods:{
       const filterButtons =   document.querySelectorAll('.eventLink');
         filterButtons.forEach(filter => {
           filter.style.color = ""
+          filter.style.borderBottom = ""
         })
-        e.target.style.color = "blue";
+        e.target.style.color = "#416b98";
+        e.target.style.borderBottom = "solid #416b98 0.5px"
       if(e.target.dataset.filter == "upcoming"){
 
         events.forEach(event => {
@@ -60,7 +62,11 @@ methods:{
     .eventLink{
         font-size:13px;
         margin-right:20px;
+        margin-left:10px;
         margin-bottom: 0px;
+        padding-top: 9px;
+        padding-bottom: 5px;
+        cursor: pointer;
         
     }
 }
