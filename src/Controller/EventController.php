@@ -12,7 +12,7 @@ use  App\Repository\EvenementRepository;
 class EventController extends AbstractController
 {
     /**
-     * @Route("/event", name="event")
+     * @Route("/", name="event")
      */
     public function index(EvenementRepository $repo): Response
     {
